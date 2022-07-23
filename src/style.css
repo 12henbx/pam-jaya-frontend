@@ -62,6 +62,19 @@ body {
   margin-left: 10px;
 }
 
+.active-nav-item .nav-link span {
+  color: #1d5699;
+}
+
+.active-nav-item::after {
+  content: "";
+  background: #1d5699;
+  position: absolute;
+  left: 0;
+  height: 24px;
+  width: 8px;
+}
+
 .div-logout-custom {
   position: fixed;
   bottom: 45px;
@@ -125,6 +138,7 @@ body {
 .bottom-navbar-custom {
   display: flex;
   flex-direction: row;
+  margin: 0 32px;
 }
 
 .ul-navbar-custom {
@@ -196,7 +210,7 @@ body {
 }
 
 .select-custom {
-  width: 160px;
+  width: 170px;
   height: 44px;
 }
 
@@ -219,7 +233,7 @@ body {
 }
 
 .card-title-custom {
-  padding: 0 20px;
+  padding: 0 28px 0 20px;
   height: 60px;
   font-weight: 500;
   font-size: 16px;
@@ -242,4 +256,88 @@ body {
   box-shadow: 0px 2px 4px 1px rgba(26, 49, 72, 0.15);
   border-radius: 8px;
   height: 100%;
+}
+
+.div-complaints-custom {
+  display: flex;
+  padding: 22px 28px;
+  width: 100%;
+}
+
+.complaints-container-custom {
+  background-color: #fefefe;
+  box-shadow: 0px 2px 4px 1px rgba(26, 49, 72, 0.15);
+  border-radius: 8px;
+  height: 100%;
+}
+
+#example_wrapper {
+  margin: 10px 20px;
+}
+
+#example {
+  table-layout: fixed;
+}
+
+.filters th input {
+  width: 100%;
+}
+
+#example_length label {
+  display: flex;
+  flex-direction: row;
+}
+
+#example_length label select {
+  width: auto;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+#example_filter label {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+#example_filter label input {
+  width: auto;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.div-history-custom {
+  display: flex;
+  padding: 22px 28px;
+  width: 100%;
+}
+
+.history-container-custom {
+  background-color: #fefefe;
+  box-shadow: 0px 2px 4px 1px rgba(26, 49, 72, 0.15);
+  border-radius: 8px;
+  height: 100%;
+}
+
+/* Modal Detail Complaint */
+
+.col-data-modal-custom div span {
+  font-weight: 400;
+  font-size: 12px;
+  color: #656d77;
+}
+
+.col-data-modal-custom div p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #353535;
+}
+
+.link-platform {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration-line: underline;
+  color: #353535;
 }

@@ -39,9 +39,7 @@
       integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
       crossorigin=""
     ></script>
-
-    <script src="leaflet-heat.js"></script>
-    <script src="app.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
     <link rel="shortcut icon" href="./favico.png" />
   </head>
@@ -53,28 +51,31 @@
             <img src="./logo-pam.png" />
             <img src="./logo-pam-2.png" />
           </li>
-          <li class="nav-item nav-item-custom">
+          <li
+            id="heatmap-menu"
+            class="nav-item nav-item-custom active-nav-item"
+          >
             <a class="nav-link" href="#">
-              <img src="./space_dashboard_black_24dp.svg" />
-              <span>Main Dashboard</span>
+              <img id="heatmap-icon" src="./space_dashboard_blue_24dp.svg" />
+              <span>Heatmap</span>
             </a>
           </li>
-          <li class="nav-item nav-item-custom">
+          <li id="complaints-menu" class="nav-item nav-item-custom">
             <a class="nav-link" href="#">
-              <img src="./alert_box_24px.svg" />
+              <img id="complaints-icon" src="./alert_box_black_24px.svg" />
               <span>Complaints</span>
             </a>
           </li>
-          <li class="nav-item nav-item-custom">
+          <li id="history-menu" class="nav-item nav-item-custom">
             <a class="nav-link" href="#">
-              <img src="./history_black_24dp.svg" />
-              <span>Solved History</span>
+              <img id="history-icon" src="./history_black_24dp.svg" />
+              <span>My History</span>
             </a>
           </li>
-          <li class="nav-item nav-item-custom">
+          <li id="performance-menu" class="nav-item nav-item-custom">
             <a class="nav-link" href="#">
-              <img src="./leaderboard_black_24dp.svg" />
-              <span>Leaderboard</span>
+              <img id="performance-icon" src="./leaderboard_black_24dp.svg" />
+              <span>My Performance</span>
             </a>
           </li>
         </ul>
@@ -104,11 +105,13 @@
               </div>
             </div>
           </div>
-          <div class="bottom-navbar-custom">
+        </div>
+        <div id="content-container-custom" class="col content-container-custom">
+          <div id="bottom-navbar-custom" class="bottom-navbar-custom">
             <div class="div-province-custom col-2">
-              <p>Provinsi</p>
+              <p>Province</p>
               <ul class="ul-navbar-custom">
-                <li class="nav-item nav-topbar-custom">
+                <li id="dki-jakarta" class="nav-item nav-topbar-custom">
                   <a class="a-topbar-custom">
                     DKI JAKARTA
                   </a>
@@ -116,34 +119,34 @@
               </ul>
             </div>
             <div class="div-kabupaten-custom col-8">
-              <p>Kota Administrasi/Kabupaten</p>
+              <p>City/District</p>
               <ul class="ul-navbar-custom">
-                <li class="nav-item nav-topbar-custom-active">
+                <li id="jakpus" class="nav-item nav-topbar-custom-active">
                   <a class="a-topbar-custom active">
                     JAKPUS
                   </a>
                 </li>
-                <li class="nav-item nav-topbar-custom">
+                <li id="jakut" class="nav-item nav-topbar-custom">
                   <a class="a-topbar-custom">
                     JAKUT
                   </a>
                 </li>
-                <li class="nav-item nav-topbar-custom">
+                <li id="jaksel" class="nav-item nav-topbar-custom">
                   <a class="a-topbar-custom">
                     JAKSEL
                   </a>
                 </li>
-                <li class="nav-item nav-topbar-custom">
+                <li id="jakbar" class="nav-item nav-topbar-custom">
                   <a class="a-topbar-custom">
                     JAKBAR
                   </a>
                 </li>
-                <li class="nav-item nav-topbar-custom">
+                <li id="jaktim" class="nav-item nav-topbar-custom">
                   <a class="a-topbar-custom">
                     JAKTIM
                   </a>
                 </li>
-                <li class="nav-item nav-topbar-custom">
+                <li id="kep-seribu" class="nav-item nav-topbar-custom">
                   <a class="a-topbar-custom">
                     KEP.SERIBU
                   </a>
@@ -162,8 +165,6 @@
               </select>
             </div>
           </div>
-        </div>
-        <div class="col content-container-custom">
           <div class="row container-map-freq-custom">
             <div class="map-wrapper-custom col-8">
               <div class="map-container-custom">
@@ -182,11 +183,15 @@
                   <span>Complaint Frequency Heatmap</span>
                   <img src="./download_black_24dp.svg" alt="download" />
                 </div>
-                <table class="table">
+                <table
+                  id="complaint-frequency"
+                  class="table table-striped table-complaint-frequency"
+                  style="width:100%"
+                >
                   <thead>
                     <tr>
-                      <th scope="col">Kabupaten</th>
-                      <th scope="col">Count</th>
+                      <th>Kabupaten</th>
+                      <th>Count</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -199,26 +204,57 @@
                       <td>342</td>
                     </tr>
                     <tr>
-                      <td colspan="2">Jakarta Barat</td>
+                      <td>Jakarta Barat</td>
                       <td>422</td>
+                    </tr>
+                    <tr>
+                      <td>Jakarta Pusat</td>
+                      <td>241</td>
+                    </tr>
+                    <tr>
+                      <td>Jakarta Selatan</td>
+                      <td>342</td>
+                    </tr>
+                    <tr>
+                      <td>Jakarta Barat</td>
+                      <td>422</td>
+                    </tr>
+                    <tr>
+                      <td>Jakarta Pusat</td>
+                      <td>241</td>
+                    </tr>
+                    <tr>
+                      <td>Jakarta Selatan</td>
+                      <td>342</td>
+                    </tr>
+                    <tr>
+                      <td>Jakarta Barat</td>
+                      <td>1</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-          <div class="div-complaints-custom">
-            <table class="table">
+        </div>
+        <!-- Complaints -->
+        <div id="div-complaints-custom" class="div-complaints-custom">
+          <div class="complaints-container-custom">
+            <div class="card-title-custom">
+              <span>Detailed Complaints Information</span>
+              <img src="./download_black_24dp.svg" alt="download" />
+            </div>
+            <table id="example" class="table table-striped" style="width:100%">
               <thead>
                 <tr>
-                  <th scope="col">Complaint ID</th>
-                  <th scope="col">Created</th>
-                  <th scope="col">Username</th>
-                  <th scope="col">Platform</th>
-                  <th scope="col">Location</th>
-                  <th scope="col">Category</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Action</th>
+                  <th>Complaint ID</th>
+                  <th>Created</th>
+                  <th>Username</th>
+                  <th>Platform</th>
+                  <th>Location</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -244,6 +280,139 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+        <!-- My History -->
+        <div id="div-history-custom" class="div-history-custom">
+          <div class="history-container-custom">
+            <div class="card-title-custom">
+              <span>Detailed Complaints Information</span>
+              <img src="./download_black_24dp.svg" alt="download" />
+            </div>
+            <table
+              id="history-table"
+              class="table table-striped"
+              style="width:100%"
+            >
+              <thead>
+                <tr>
+                  <th>Complaint ID</th>
+                  <th>Solving Time</th>
+                  <th>Username</th>
+                  <th>Platform</th>
+                  <th>Location</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                </tr>
+                <tr>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-coreui-toggle="modal"
+            data-coreui-target="#staticBackdrop"
+          >
+            Launch static backdrop modal
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="staticBackdrop"
+            data-coreui-backdrop="static"
+            data-coreui-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="col">
+                  <div class="row">
+                    <div class="col col-data-modal-custom">
+                      <div>
+                        <span>Complaint ID</span>
+                        <p id="complaint-id-modal"></p>
+                      </div>
+                      <div>
+                        <span>Username</span>
+                        <p id="username-modal"></p>
+                      </div>
+                      <div>
+                        <span>Location</span>
+                        <p id="location-modal"></p>
+                      </div>
+                      <div>
+                        <span>Status</span>
+                        <p id="status-modal"></p>
+                      </div>
+                      <div>
+                        <span>Assigned Time</span>
+                        <p id="assigned-time-modal"></p>
+                      </div>
+                    </div>
+                    <div class="col col-data-modal-custom">
+                      <div>
+                        <span>Complaint Created</span>
+                        <p id="complaint-created-modal"></p>
+                      </div>
+                      <div>
+                        <span>Platform</span>
+                        <br>
+                        <a id="platform-modal" href="#" data-coreui-toggle="tooltip" title="Open original post/tweet" class="link-platform">Twitter</a>
+                      </div>
+                      <div>
+                        <span>Category</span>
+                        <p id="category-modal"></p>
+                      </div>
+                      <div>
+                        <span>Handler</span>
+                        <p id="handler-modal"></p>
+                      </div>
+                      <div>
+                        <span>Solved Time</span>
+                        <p id="solved-time-modal"></p>
+                      </div>
+                    </div>
+                    <div class="col col-data-modal-custom">
+                      <div>
+                        <span>Complaint Message</span>
+                        <p id="complaint-message-modal"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-ghost-secondary" data-coreui-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary rounded-pill">Handle Complaint</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
