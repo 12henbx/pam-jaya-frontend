@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Keluhan Pelanggan</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/css/coreui.min.css"
+      rel="stylesheet"
+      integrity="sha384-UkVD+zxJKGsZP3s/JuRzapi4dQrDDuEf/kHphzg8P3v8wuQ6m9RLjTkPGeFcglQU"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/js/coreui.bundle.min.js"
+      integrity="sha384-n0qOYeB4ohUPebL1M9qb/hfYkTp4lvnZM6U6phkRofqsMzK29IdkBJPegsyfj/r4"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="shortcut icon" href="./favico.png" />
+  </head>
+  <body>
+    <div>
+      <div class="position-fixed sidebar-custom">
+        <ul class="sidebar-nav">
+          <li class="nav-title title-icon-custom">
+            <img src="./logo-pam.png" />
+            <img src="./logo-pam-2.png" />
+          </li>
+          <li class="nav-item nav-item-custom">
+            <a class="nav-link" href="#">
+              <img src="./space_dashboard_black_24dp.svg" /> Dasboard Utama
+            </a>
+          </li>
+          <li class="nav-item nav-item-custom">
+            <a class="nav-link" href="#">
+              <img src="./history_black_24dp.svg" /> Riwayat Penanganan
+            </a>
+          </li>
+          <li class="nav-item nav-item-custom">
+            <a class="nav-link" href="#">
+              <img src="./settings_black_24dp.svg" /> Pengaturan
+            </a>
+          </li>
+          <li class="nav-item nav-item-custom">
+            <a class="nav-link" href="#">
+              <img src="./logout_black_24dp.svg" /> Keluar
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="container-custom">
+        <div class="navbar-top-custom">
+          <div class="upper-navbar-custom">
+            <h1>Welcome, Administrator</h1>
+            <div class="div-notifprofile-custom">
+              <img src="./notifications_black_24dp.svg" />
+              <div class="container-profile-custom">
+                <img
+                  class="background-profile-custom"
+                  src="./profile-ico.png"
+                />
+                <span>P</span>
+              </div>
+            </div>
+          </div>
+          <div class="bottom-navbar-custom">
+            <div class="div-province-custom col-2">
+              <p>Provinsi</p>
+              <ul class="ul-navbar-custom">
+                <li class="nav-item nav-topbar-custom">
+                  <a class="a-topbar-custom">
+                    DKI JAKARTA
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="div-kabupaten-custom col-8">
+              <p>Kota Administrasi/Kabupaten</p>
+              <ul class="ul-navbar-custom">
+                <li class="nav-item nav-topbar-custom-active">
+                  <a class="a-topbar-custom active">
+                    JAKPUS
+                  </a>
+                </li>
+                <li class="nav-item nav-topbar-custom">
+                  <a class="a-topbar-custom">
+                    JAKUT
+                  </a>
+                </li>
+                <li class="nav-item nav-topbar-custom">
+                  <a class="a-topbar-custom">
+                    JAKSEL
+                  </a>
+                </li>
+                <li class="nav-item nav-topbar-custom">
+                  <a class="a-topbar-custom">
+                    JAKBAR
+                  </a>
+                </li>
+                <li class="nav-item nav-topbar-custom">
+                  <a class="a-topbar-custom">
+                    JAKTIM
+                  </a>
+                </li>
+                <li class="nav-item nav-topbar-custom">
+                  <a class="a-topbar-custom">
+                    KEP.SERIBU
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="container-select-custom col-2">
+              <select
+                class="form-select select-custom"
+                aria-label="Default select example"
+              >
+                <option selected>Rentang Waktu</option>
+                <option value="1">3 Bulan</option>
+                <option value="2">6 Bulan</option>
+                <option value="3">9 Bulan</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col content-container-custom">
+          <div class="row container-map-freq-custom">
+            <div class="map-wrapper-custom col-8">
+              <div class="map-container-custom">
+                <div class="card-title-custom">
+                  <span>Complaint Frequency Heatmap</span>
+                  <img src="./download_black_24dp.svg" alt="download" />
+                </div>
+              </div>
+            </div>
+            <div class="freq-wrapper-custom col-4">
+              <div class="freq-container-custom">
+                <div class="card-title-custom">
+                  <span>Complaint Frequency Heatmap</span>
+                  <img src="./download_black_24dp.svg" alt="download" />
+                </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Kabupaten</th>
+                      <th scope="col">Count</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Jakarta Pusat</td>
+                      <td>241</td>
+                    </tr>
+                    <tr>
+                      <td>Jakarta Selatan</td>
+                      <td>342</td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">Jakarta Barat</td>
+                      <td>422</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

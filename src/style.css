@@ -1,0 +1,208 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f9f9ff;
+}
+
+.sidebar-custom {
+  width: 192px;
+  height: 100%;
+  background-color: #fefefe;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.title-icon-custom {
+  height: 90px;
+  border-bottom: 1px solid #eeeeee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-icon-custom img {
+  height: 45px;
+  margin: 0 5px;
+}
+
+.nav-item-custom {
+  margin-top: 33px;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-custom {
+  margin-left: 192px;
+}
+
+.navbar-top-custom {
+  display: flex;
+  margin-left: 32px;
+  margin-right: 32px;
+  flex-direction: column;
+}
+
+.upper-navbar-custom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 72px;
+  align-items: center;
+}
+
+.div-notifprofile-custom {
+  display: flex;
+  flex-direction: row;
+  height: 42px;
+}
+
+.container-profile-custom {
+  width: 42px;
+  margin-left: 35px;
+  align-items: center;
+  display: flex;
+}
+
+.container-profile-custom span {
+  position: absolute;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  right: 40px;
+  font-weight: 500;
+}
+
+.background-profile-custom {
+  position: absolute;
+  opacity: 0.6;
+  mix-blend-mode: screen;
+}
+
+.upper-navbar-custom h1 {
+  color: #1d5699;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+}
+
+.bottom-navbar-custom {
+  display: flex;
+  flex-direction: row;
+}
+
+.ul-navbar-custom {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.ul-navbar-custom li {
+  float: left;
+  height: 32px;
+  margin-right: 12px;
+}
+
+.div-province-custom p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: #656d77;
+}
+
+.div-kabupaten-custom p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: #656d77;
+}
+
+.nav-topbar-custom {
+  background: #f9f9ff;
+  border: 1px solid #656d77;
+  border-radius: 18px;
+}
+
+.nav-topbar-custom-active {
+  background: #2d77cd;
+  border-radius: 18px;
+  color: white;
+}
+
+.a-topbar-custom {
+  display: block;
+  padding: 0.44rem 1rem;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  color: #656d77;
+}
+
+.nav-topbar-custom-active a {
+  color: white;
+}
+
+.div-province-custom {
+}
+
+.div-kabupaten-custom {
+}
+
+.container-select-custom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 10px;
+}
+
+.select-custom {
+  width: 160px;
+  height: 44px;
+}
+
+.content-container-custom {
+}
+
+.container-map-freq-custom {
+  padding: 22px 28px;
+}
+
+.map-wrapper-custom {
+  height: 487px;
+}
+
+.map-container-custom {
+  background-color: #fefefe;
+  box-shadow: 0px 2px 4px 1px rgba(26, 49, 72, 0.15);
+  border-radius: 8px;
+  height: 100%;
+}
+
+.card-title-custom {
+  padding: 0 20px;
+  height: 60px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-title-custom span {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  color: #2d77cd;
+}
+
+.freq-container-custom {
+  background-color: #fefefe;
+  box-shadow: 0px 2px 4px 1px rgba(26, 49, 72, 0.15);
+  border-radius: 8px;
+  height: 100%;
+}
