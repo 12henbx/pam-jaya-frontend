@@ -5,6 +5,12 @@ body {
   background-color: #f9f9ff;
 }
 
+/* MAP LEAFLET */
+
+#issMap {
+  height: 430px;
+}
+
 .sidebar-custom {
   width: 192px;
   height: 100%;
@@ -14,10 +20,19 @@ body {
 
 .title-icon-custom {
   height: 90px;
-  border-bottom: 1px solid #eeeeee;
+  /* border-bottom: 1px solid #eeeeee; */
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.title-icon-custom::after {
+  content: "";
+  background: #d5d9df;
+  position: absolute;
+  bottom: 75%;
+  height: 1px;
+  width: 70%;
 }
 
 .title-icon-custom img {
@@ -26,13 +41,35 @@ body {
 }
 
 .nav-item-custom {
-  margin-top: 33px;
+  margin-top: 42px;
   justify-content: center;
   align-items: center;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.nav-item-custom a {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 100%;
+  margin-left: 35px;
+}
+
+.nav-item-custom .nav-link span {
+  color: #656d77;
+  margin-left: 10px;
+}
+
+.div-logout-custom {
+  position: fixed;
+  bottom: 45px;
 }
 
 .container-custom {
   margin-left: 192px;
+  overflow: hidden;
 }
 
 .navbar-top-custom {
