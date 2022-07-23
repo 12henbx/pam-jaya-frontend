@@ -77,3 +77,21 @@ export const complaintData = {
     ]
   }
 };
+
+export const complaintList = {
+  status: "success",
+  data: {
+    complaint_id: 1111111,
+    created_at: "2022-07-23T03:56:14.000Z",
+    username: "ridwanakf",
+    platform: "twitter",
+    link: "https://twitter.com/username/122928289298",
+    location: "kecamatan",
+    category: ["mati", "kotor"],
+    status: "",
+    assigned_to: "", // bisa kosong klo belum diambil siapapun
+    assigned_at: "2022-07-23T03:56:14.000Z", // status-> assigned, selain itu kosong
+    solved_at: "2022-07-23T03:56:14.000Z", // status -> solved, selain itu kosong
+    message: ""
+  }
+};

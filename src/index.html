@@ -190,47 +190,11 @@
                 >
                   <thead>
                     <tr>
-                      <th>Kabupaten</th>
+                      <th>City/District</th>
                       <th>Count</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Jakarta Pusat</td>
-                      <td>241</td>
-                    </tr>
-                    <tr>
-                      <td>Jakarta Selatan</td>
-                      <td>342</td>
-                    </tr>
-                    <tr>
-                      <td>Jakarta Barat</td>
-                      <td>422</td>
-                    </tr>
-                    <tr>
-                      <td>Jakarta Pusat</td>
-                      <td>241</td>
-                    </tr>
-                    <tr>
-                      <td>Jakarta Selatan</td>
-                      <td>342</td>
-                    </tr>
-                    <tr>
-                      <td>Jakarta Barat</td>
-                      <td>422</td>
-                    </tr>
-                    <tr>
-                      <td>Jakarta Pusat</td>
-                      <td>241</td>
-                    </tr>
-                    <tr>
-                      <td>Jakarta Selatan</td>
-                      <td>342</td>
-                    </tr>
-                    <tr>
-                      <td>Jakarta Barat</td>
-                      <td>1</td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -258,29 +222,85 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                </tr>
-                <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                </tr>
               </tbody>
             </table>
           </div>
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="complaintsModal"
+            data-coreui-backdrop="static"
+            data-coreui-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="complaintsModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="col">
+                  <div class="row">
+                    <div class="col col-data-modal-custom">
+                      <div>
+                        <span>Complaint ID</span>
+                        <p id="complaint-id-modal"></p>
+                      </div>
+                      <div>
+                        <span>Username</span>
+                        <p id="username-modal"></p>
+                      </div>
+                      <div>
+                        <span>Location</span>
+                        <p id="location-modal"></p>
+                      </div>
+                      <div>
+                        <span>Status</span>
+                        <p id="status-modal"></p>
+                      </div>
+                      <div>
+                        <span>Assigned Time</span>
+                        <p id="assigned-time-modal"></p>
+                      </div>
+                    </div>
+                    <div class="col col-data-modal-custom">
+                      <div>
+                        <span>Complaint Created</span>
+                        <p id="complaint-created-modal"></p>
+                      </div>
+                      <div>
+                        <span>Platform</span>
+                        <br>
+                        <a id="platform-modal" href="#" data-coreui-toggle="tooltip" title="Open original post/tweet" class="link-platform">Twitter</a>
+                      </div>
+                      <div>
+                        <span>Category</span>
+                        <p id="category-modal"></p>
+                      </div>
+                      <div>
+                        <span>Handler</span>
+                        <p id="handler-modal"></p>
+                      </div>
+                      <div>
+                        <span>Solved Time</span>
+                        <p id="solved-time-modal"></p>
+                      </div>
+                    </div>
+                    <div class="col col-data-modal-custom">
+                      <div>
+                        <span>Complaint Message</span>
+                        <p id="complaint-message-modal"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-ghost-secondary" data-coreui-dismiss="modal">Close</button>
+                    <button id="assign-ticket-btn" type="button" class="btn btn-primary rounded-pill">Handle Complaint</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
         <!-- My History -->
         <div id="div-history-custom" class="div-history-custom">
@@ -315,34 +335,40 @@
                   <td>Otto</td>
                   <td>@mdo</td>
                   <td>Mark</td>
-                  <td>Otto</td>
+                  <td>
+                    <img src="./show-btn.svg" alt="show">
+                    <img src="./handle-btn.svg" alt="hanlde">
+                  </td>
                 </tr>
                 <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
+                  <td>aaabc</td>
+                  <td>etye</td>
+                  <td>@sfgs</td>
+                  <td>sgfsdf</td>
+                  <td>dfvs</td>
+                  <td>@sdfgs</td>
+                  <td>sfgsd</td>
+                  <td>
+                    <img src="./show-btn.svg" alt="show">
+                    <img src="./handle-btn.svg" alt="hanlde">
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <button
+          <!-- <button
             type="button"
             class="btn btn-primary"
             data-coreui-toggle="modal"
-            data-coreui-target="#staticBackdrop"
+            data-coreui-target="#historyStaticBackdrop"
           >
             Launch static backdrop modal
-          </button>
+          </button> -->
 
           <!-- Modal -->
-          <div
+          <!-- <div
             class="modal fade"
-            id="staticBackdrop"
+            id="historyStaticBackdrop"
             data-coreui-backdrop="static"
             data-coreui-keyboard="false"
             tabindex="-1"
@@ -414,7 +440,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>

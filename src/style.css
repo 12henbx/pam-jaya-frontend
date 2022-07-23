@@ -264,6 +264,10 @@ body {
   width: 100%;
 }
 
+td {
+  text-transform: capitalize;
+}
+
 .complaints-container-custom {
   background-color: #fefefe;
   box-shadow: 0px 2px 4px 1px rgba(26, 49, 72, 0.15);
@@ -317,6 +321,42 @@ body {
   box-shadow: 0px 2px 4px 1px rgba(26, 49, 72, 0.15);
   border-radius: 8px;
   height: 100%;
+  width: 100%;
+}
+
+#history-table_wrapper {
+  margin: 10px 20px;
+}
+
+#history-table {
+  table-layout: fixed;
+}
+
+.filters th input {
+  width: 100%;
+}
+
+#history-table_length label {
+  display: flex;
+  flex-direction: row;
+}
+
+#history-table_length label select {
+  width: auto;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+#history-table_filter label {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+#history-table_filter label input {
+  width: auto;
+  display: inline-block;
+  margin: 0 10px;
 }
 
 /* Modal Detail Complaint */
