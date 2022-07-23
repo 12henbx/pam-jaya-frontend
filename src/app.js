@@ -40,6 +40,8 @@ const BASE_URL = "https://jsonplaceholder.typicode.com";
 var responseHeatmap,
   responseComplaint,
   selectedResponseComplaint,
+  responseHistory,
+  selectedResponseHistory,
   jakutFreq,
   jakselFreq,
   uncategorizedFreq,
@@ -120,6 +122,46 @@ window.onload = function() {
 
   var assignTicketBtn = document.getElementById("assign-ticket-btn");
   assignTicketBtn.addEventListener("click", assignTicketApi, false);
+
+  // My History API
+  axios
+    .get(
+      "https://hackwater-backend-service.herokuapp.com/dashboard/history?page=1&limit=100",
+      {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSm9uIFNub3ciLCJlbWFpbCI6ImpvbkBnbWFpbC5jb20iLCJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjU4ODYxNTc3fQ.gxnHs31bLXb7qP3sS4b09ubiWd4ZS-3Xp99782LjXV0"
+        }
+      }
+    )
+    .then(function(response) {
+      console.log(response.data);
+      responseHistory = response.data.data;
+      for (let i = 0; i < responseHistory.length; i++) {
+        let action = `<img src="./show-btn.svg" alt="show"><span>      </span><img ${(onclick = historyModal(
+          i
+        ))} data-coreui-toggle="modal" data-coreui-target="#historyModal" src="./handle-btn.svg" alt="hanlde">`;
+        var t = $("#history-table").DataTable();
+        t.row
+          .add([
+            responseHistory[i].complaint_id,
+            timeDifferenceNow(responseHistory[i].solve_at),
+            responseHistory[i].username,
+            responseHistory[i].platform,
+            responseHistory[i].location,
+            responseHistory[i].category,
+            responseHistory[i].status,
+            action
+          ])
+          .draw(false);
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+  var solveTicketBtn = document.getElementById("solve-ticket-btn");
+  solveTicketBtn.addEventListener("click", solveTicketApi, false);
 
   // Heatmap
 
@@ -561,6 +603,12 @@ window.onload = function() {
           });
       }
     });
+    $("#history-table").on("click", "tbody tr", function(index) {
+      // var row = table.row($(this)).data();
+      var rowIndexHistory = table.row($(this)).index();
+      console.log(rowIndexHistory);
+      historyModal(rowIndexHistory);
+    });
   });
 
   function assignTicketApi() {
@@ -582,6 +630,8 @@ window.onload = function() {
       .catch(error => {
         console.log(error);
       });
+    var complaintTableVar = $("#example").DataTable();
+    complaintTableVar.clear();
     axios
       .get(
         "https://hackwater-backend-service.herokuapp.com/dashboard/complaint?page=1&limit=100",
@@ -609,6 +659,64 @@ window.onload = function() {
               responseComplaint[i].location,
               responseComplaint[i].category,
               responseComplaint[i].status,
+              action
+            ])
+            .draw(false);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  function solveTicketApi() {
+    console.log("test");
+    axios
+      .post(
+        `https://hackwater-backend-service.herokuapp.com/dashboard/history/solve?complaint_id=${selectedResponseHistory.complaint_id}`,
+        null,
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSm9uIFNub3ciLCJlbWFpbCI6ImpvbkBnbWFpbC5jb20iLCJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjU4ODYxNTc3fQ.gxnHs31bLXb7qP3sS4b09ubiWd4ZS-3Xp99782LjXV0"
+          }
+        }
+      )
+      .then(function(response) {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    var historyTableVar = $("#history-table").DataTable();
+    historyTableVar.clear();
+    axios
+      .get(
+        "https://hackwater-backend-service.herokuapp.com/dashboard/history?page=1&limit=100",
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSm9uIFNub3ciLCJlbWFpbCI6ImpvbkBnbWFpbC5jb20iLCJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjU4ODYxNTc3fQ.gxnHs31bLXb7qP3sS4b09ubiWd4ZS-3Xp99782LjXV0"
+          }
+        }
+      )
+      .then(function(response) {
+        console.log(response.data);
+        responseHistory = response.data.data;
+        for (let i = 0; i < responseHistory.length; i++) {
+          let action = `<img src="./show-btn.svg" alt="show"><span>      </span><img ${(onclick = historyModal(
+            i
+          ))} data-coreui-toggle="modal" data-coreui-target="#historyModal" src="./handle-btn.svg" alt="hanlde">`;
+          var t = $("#history-table").DataTable();
+          t.row
+            .add([
+              responseHistory[i].complaint_id,
+              timeDifferenceNow(responseHistory[i].solve_at),
+              responseHistory[i].username,
+              responseHistory[i].platform,
+              responseHistory[i].location,
+              responseHistory[i].category,
+              responseHistory[i].status,
               action
             ])
             .draw(false);
@@ -652,9 +760,6 @@ function timeDifferenceNow(date2) {
 }
 
 function complaintsModal(idx) {
-  // $.noConflict();
-  // $("#complaintsModal").modal("show");
-  console.log(idx);
   selectedResponseComplaint = responseComplaint[idx];
   document.getElementById("complaint-id-modal").innerHTML =
     responseComplaint[idx].complaint_id;
@@ -679,4 +784,32 @@ function complaintsModal(idx) {
     responseComplaint[idx].solved_at;
   document.getElementById("complaint-message-modal").innerHTML =
     responseComplaint[idx].message;
+}
+
+function historyModal(idx) {
+  console.log(idx);
+  selectedResponseHistory = responseHistory[idx];
+  document.getElementById("complaint-id-history-modal").innerHTML =
+    responseHistory[idx].complaint_id;
+  document.getElementById("username-history-modal").innerHTML =
+    responseHistory[idx].username;
+  document.getElementById("location-history-modal").innerHTML =
+    responseHistory[idx].location;
+  document.getElementById("status-history-modal").innerHTML =
+    responseHistory[idx].status;
+  document.getElementById("assigned-time-history-modal").innerHTML =
+    responseHistory[idx].assigned_at;
+  document.getElementById(
+    "complaint-created-history-modal"
+  ).innerHTML = timeDifferenceNow(responseHistory[idx].created_at);
+  document.getElementById("platform-history-modal").innerHTML =
+    responseHistory[idx].platform;
+  document.getElementById("category-history-modal").innerHTML =
+    responseHistory[idx].category;
+  document.getElementById("handler-history-modal").innerHTML =
+    responseHistory[idx].assigned_at;
+  document.getElementById("solved-time-history-modal").innerHTML =
+    responseHistory[idx].solved_at;
+  document.getElementById("complaint-message-history-modal").innerHTML =
+    responseHistory[idx].message;
 }

@@ -306,7 +306,7 @@
         <div id="div-history-custom" class="div-history-custom">
           <div class="history-container-custom">
             <div class="card-title-custom">
-              <span>Detailed Complaints Information</span>
+              <span>My Complaint Handling History</span>
               <img src="./download_black_24dp.svg" alt="download" />
             </div>
             <table
@@ -327,48 +327,14 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>
-                    <img src="./show-btn.svg" alt="show">
-                    <img src="./handle-btn.svg" alt="hanlde">
-                  </td>
-                </tr>
-                <tr>
-                  <td>aaabc</td>
-                  <td>etye</td>
-                  <td>@sfgs</td>
-                  <td>sgfsdf</td>
-                  <td>dfvs</td>
-                  <td>@sdfgs</td>
-                  <td>sfgsd</td>
-                  <td>
-                    <img src="./show-btn.svg" alt="show">
-                    <img src="./handle-btn.svg" alt="hanlde">
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>
-          <!-- <button
-            type="button"
-            class="btn btn-primary"
-            data-coreui-toggle="modal"
-            data-coreui-target="#historyStaticBackdrop"
-          >
-            Launch static backdrop modal
-          </button> -->
 
-          <!-- Modal -->
-          <!-- <div
+          <!-- Modal History -->
+          <div
             class="modal fade"
-            id="historyStaticBackdrop"
+            id="historyModal"
             data-coreui-backdrop="static"
             data-coreui-keyboard="false"
             tabindex="-1"
@@ -383,64 +349,64 @@
                     <div class="col col-data-modal-custom">
                       <div>
                         <span>Complaint ID</span>
-                        <p id="complaint-id-modal"></p>
+                        <p id="complaint-id-history-modal"></p>
                       </div>
                       <div>
                         <span>Username</span>
-                        <p id="username-modal"></p>
+                        <p id="username-history-modal"></p>
                       </div>
                       <div>
                         <span>Location</span>
-                        <p id="location-modal"></p>
+                        <p id="location-history-modal"></p>
                       </div>
                       <div>
                         <span>Status</span>
-                        <p id="status-modal"></p>
+                        <p id="status-history-modal"></p>
                       </div>
                       <div>
                         <span>Assigned Time</span>
-                        <p id="assigned-time-modal"></p>
+                        <p id="assigned-time-history-modal"></p>
                       </div>
                     </div>
                     <div class="col col-data-modal-custom">
                       <div>
                         <span>Complaint Created</span>
-                        <p id="complaint-created-modal"></p>
+                        <p id="complaint-created-history-modal"></p>
                       </div>
                       <div>
                         <span>Platform</span>
                         <br>
-                        <a id="platform-modal" href="#" data-coreui-toggle="tooltip" title="Open original post/tweet" class="link-platform">Twitter</a>
+                        <a id="platform-history-modal" href="#" data-coreui-toggle="tooltip" title="Open original post/tweet" class="link-platform">Twitter</a>
                       </div>
                       <div>
                         <span>Category</span>
-                        <p id="category-modal"></p>
+                        <p id="category-history-modal"></p>
                       </div>
                       <div>
                         <span>Handler</span>
-                        <p id="handler-modal"></p>
+                        <p id="handler-history-modal"></p>
                       </div>
                       <div>
                         <span>Solved Time</span>
-                        <p id="solved-time-modal"></p>
+                        <p id="solved-time-history-modal"></p>
                       </div>
                     </div>
                     <div class="col col-data-modal-custom">
                       <div>
                         <span>Complaint Message</span>
-                        <p id="complaint-message-modal"></p>
+                        <p id="complaint-message-history-modal"></p>
                       </div>
                     </div>
                   </div>
                   <div class="d-flex justify-content-end">
                     <button type="button" class="btn btn-ghost-secondary" data-coreui-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary rounded-pill">Handle Complaint</button>
+                    <button id="solve-ticket-btn" type="button" class="btn btn-primary rounded-pill">Mark as Solved</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
   </body>
