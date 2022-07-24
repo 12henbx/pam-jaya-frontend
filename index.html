@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Keluhan Pelanggan</title>
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/css/coreui.min.css"
+      rel="stylesheet"
+      integrity="sha384-UkVD+zxJKGsZP3s/JuRzapi4dQrDDuEf/kHphzg8P3v8wuQ6m9RLjTkPGeFcglQU"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/js/coreui.bundle.min.js"
+      integrity="sha384-n0qOYeB4ohUPebL1M9qb/hfYkTp4lvnZM6U6phkRofqsMzK29IdkBJPegsyfj/r4"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+      integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+      crossorigin=""
+    ></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <link rel="shortcut icon" href="./favico.png" />
+  </head>
+  <body>
+    <div>
+      <div class="position-fixed sidebar-custom">
+        <ul class="sidebar-nav">
+          <li class="nav-title title-icon-custom">
+            <img src="./logo-pam.png" />
+            <img src="./logo-pam-2.png" />
+          </li>
+          <li
+            id="heatmap-menu"
+            class="nav-item nav-item-custom active-nav-item"
+          >
+            <a class="nav-link" href="#">
+              <img id="heatmap-icon" src="./space_dashboard_blue_24dp.svg" />
+              <span>Heatmap</span>
+            </a>
+          </li>
+          <li id="complaints-menu" class="nav-item nav-item-custom">
+            <a class="nav-link" href="#">
+              <img id="complaints-icon" src="./alert_box_black_24px.svg" />
+              <span>Complaints</span>
+            </a>
+          </li>
+          <li id="history-menu" class="nav-item nav-item-custom">
+            <a class="nav-link" href="#">
+              <img id="history-icon" src="./history_black_24dp.svg" />
+              <span>My History</span>
+            </a>
+          </li>
+          <li id="performance-menu" class="nav-item nav-item-custom">
+            <a class="nav-link" href="#">
+              <img id="performance-icon" src="./leaderboard_black_24dp.svg" />
+              <span>My Performance</span>
+            </a>
+          </li>
+        </ul>
+        <div class="div-logout-custom">
+          <ul class="sidebar-nav">
+            <li class="nav-item nav-item-custom">
+              <a class="nav-link" href="#">
+                <img src="./logout_black_24dp.svg" />
+                <span>Keluar</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="container-custom">
+        <div class="navbar-top-custom">
+          <div class="upper-navbar-custom">
+            <h1>Welcome, Administrator</h1>
+            <div class="div-notifprofile-custom">
+              <img src="./notifications_black_24dp.svg" />
+              <div class="container-profile-custom">
+                <!-- <img
+                  class="background-profile-custom"
+                  src="./profile-ico.png"
+                />
+                <span>P</span> -->
+                <div class="avatar bg-info text-white">
+                  <svg id="cib-coreui-c" class="icon" viewBox="0 0 32 32">
+                    <path d="M27.912 7.289l-10.324-5.961c-0.455-0.268-1.002-0.425-1.588-0.425s-1.133 0.158-1.604 0.433l0.015-0.008-10.324 5.961c-0.955 0.561-1.586 1.582-1.588 2.75v11.922c0.002 1.168 0.635 2.189 1.574 2.742l0.016 0.008 10.322 5.961c0.455 0.267 1.004 0.425 1.59 0.425 0.584 0 1.131-0.158 1.602-0.433l-0.014 0.008 10.322-5.961c0.955-0.561 1.586-1.582 1.588-2.75v-11.922c-0.002-1.168-0.633-2.189-1.573-2.742zM27.383 21.961c0 0.389-0.211 0.73-0.526 0.914l-0.004 0.002-10.324 5.961c-0.152 0.088-0.334 0.142-0.53 0.142s-0.377-0.053-0.535-0.145l0.005 0.002-10.324-5.961c-0.319-0.186-0.529-0.527-0.529-0.916v-11.922c0-0.389 0.211-0.73 0.526-0.914l0.004-0.002 10.324-5.961c0.152-0.090 0.334-0.143 0.53-0.143s0.377 0.053 0.535 0.144l-0.006-0.002 10.324 5.961c0.319 0.185 0.529 0.527 0.529 0.916z"></path><path d="M22.094 19.451h-0.758c-0.188 0-0.363 0.049-0.515 0.135l0.006-0.004-4.574 2.512-5.282-3.049v-6.082l5.282-3.051 4.576 2.504c0.146 0.082 0.323 0.131 0.508 0.131h0.758c0.293 0 0.529-0.239 0.529-0.531v-0.716c0-0.2-0.11-0.373-0.271-0.463l-0.004-0.002-5.078-2.777c-0.293-0.164-0.645-0.26-1.015-0.26-0.39 0-0.756 0.106-1.070 0.289l0.010-0.006-5.281 3.049c-0.636 0.375-1.056 1.055-1.059 1.834v6.082c0 0.779 0.422 1.461 1.049 1.828l0.009 0.006 5.281 3.049c0.305 0.178 0.67 0.284 1.061 0.284 0.373 0 0.723-0.098 1.027-0.265l-0.012 0.006 5.080-2.787c0.166-0.091 0.276-0.265 0.276-0.465v-0.716c0-0.293-0.238-0.529-0.529-0.529z"></path>
+                  </svg>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="content-container-custom" class="col content-container-custom">
+          <div id="bottom-navbar-custom" class="bottom-navbar-custom">
+            <div class="div-province-custom col-2">
+              <p>Province</p>
+              <ul class="ul-navbar-custom">
+                <li id="dki-jakarta" class="nav-item nav-topbar-custom">
+                  <a class="a-topbar-custom">
+                    DKI JAKARTA
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="div-kabupaten-custom col-8">
+              <p>City/District</p>
+              <ul class="ul-navbar-custom">
+                <li id="jakpus" class="nav-item nav-topbar-custom">
+                  <a class="a-topbar-custom active">
+                    JAKPUS
+                  </a>
+                </li>
+                <li id="jakut" class="nav-item nav-topbar-custom">
+                  <a class="a-topbar-custom">
+                    JAKUT
+                  </a>
+                </li>
+                <li id="jaksel" class="nav-item nav-topbar-custom">
+                  <a class="a-topbar-custom">
+                    JAKSEL
+                  </a>
+                </li>
+                <li id="jakbar" class="nav-item nav-topbar-custom">
+                  <a class="a-topbar-custom">
+                    JAKBAR
+                  </a>
+                </li>
+                <li id="jaktim" class="nav-item nav-topbar-custom">
+                  <a class="a-topbar-custom">
+                    JAKTIM
+                  </a>
+                </li>
+                <li id="kep-seribu" class="nav-item nav-topbar-custom">
+                  <a class="a-topbar-custom">
+                    KEP.SERIBU
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="container-select-custom col-2">
+              <select
+                class="form-select select-custom"
+                aria-label="Default select example"
+              >
+                <option selected>Rentang Waktu</option>
+                <option value="1">3 Bulan</option>
+                <option value="2">6 Bulan</option>
+                <option value="3">9 Bulan</option>
+              </select>
+            </div>
+          </div>
+          <div class="row container-map-freq-custom">
+            <div class="map-wrapper-custom col-8">
+              <div class="map-container-custom">
+                <div class="card-title-custom">
+                  <span>Complaint Frequency Heatmap</span>
+                  <img src="./download_black_24dp.svg" alt="download" />
+                </div>
+                <div>
+                  <div id="issMap"></div>
+                </div>
+              </div>
+            </div>
+            <div class="freq-wrapper-custom col-4">
+              <div class="freq-container-custom">
+                <div class="card-title-custom">
+                  <span>Complaint Frequency Heatmap</span>
+                  <img src="./download_black_24dp.svg" alt="download" />
+                </div>
+                <table
+                  id="complaint-frequency"
+                  class="table table-striped table-complaint-frequency"
+                  style="width:100%"
+                >
+                  <thead>
+                    <tr>
+                      <th>City/District</th>
+                      <th>Count</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Complaints -->
+        <div id="div-complaints-custom" class="div-complaints-custom">
+          <div class="complaints-container-custom">
+            <div class="card-title-custom">
+              <span>Detailed Complaints Information</span>
+              <img src="./download_black_24dp.svg" alt="download" />
+            </div>
+            <table id="example" class="table table-striped" style="width:100%">
+              <thead>
+                <tr>
+                  <th>Complaint ID</th>
+                  <th>Created</th>
+                  <th>Username</th>
+                  <th>Platform</th>
+                  <th>Location</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="complaintsModal"
+            data-coreui-backdrop="static"
+            data-coreui-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="complaintsModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="col">
+                  <div class="row">
+                    <div class="col col-data-modal-custom">
+                      <div>
+                        <span>Complaint ID</span>
+                        <p id="complaint-id-modal"></p>
+                      </div>
+                      <div>
+                        <span>Username</span>
+                        <p id="username-modal"></p>
+                      </div>
+                      <div>
+                        <span>Location</span>
+                        <p id="location-modal"></p>
+                      </div>
+                      <div>
+                        <span>Status</span>
+                        <p id="status-modal"></p>
+                      </div>
+                      <div>
+                        <span>Assigned Time</span>
+                        <p id="assigned-time-modal"></p>
+                      </div>
+                    </div>
+                    <div class="col col-data-modal-custom">
+                      <div>
+                        <span>Complaint Created</span>
+                        <p id="complaint-created-modal"></p>
+                      </div>
+                      <div>
+                        <span>Platform</span>
+                        <br>
+                        <a id="platform-modal" href="#" target="_blank" data-coreui-toggle="tooltip" title="Open original post/tweet" class="link-platform"></a>
+                      </div>
+                      <div>
+                        <span>Category</span>
+                        <p id="category-modal"></p>
+                      </div>
+                      <div>
+                        <span>Handler</span>
+                        <p id="handler-modal"></p>
+                      </div>
+                      <div>
+                        <span>Solved Time</span>
+                        <p id="solved-time-modal"></p>
+                      </div>
+                    </div>
+                    <div class="col col-data-modal-custom">
+                      <div>
+                        <span>Complaint Message</span>
+                        <p id="complaint-message-modal"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-ghost-secondary" data-coreui-dismiss="modal">Close</button>
+                    <button id="assign-ticket-btn" type="button" class="btn btn-primary rounded-pill">Handle Complaint</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- My History -->
+        <div id="div-history-custom" class="div-history-custom">
+          <div class="history-container-custom">
+            <div class="card-title-custom">
+              <span>My Complaint Handling History</span>
+              <img src="./download_black_24dp.svg" alt="download" />
+            </div>
+            <table
+              id="history-table"
+              class="table table-striped"
+              style="width:100%"
+            >
+              <thead>
+                <tr>
+                  <th>Complaint ID</th>
+                  <th>Solving Time</th>
+                  <th>Username</th>
+                  <th>Platform</th>
+                  <th>Location</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Modal History -->
+          <div
+            class="modal fade"
+            id="historyModal"
+            data-coreui-backdrop="static"
+            data-coreui-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="col">
+                  <div class="row">
+                    <div class="col col-data-modal-custom">
+                      <div>
+                        <span>Complaint ID</span>
+                        <p id="complaint-id-history-modal"></p>
+                      </div>
+                      <div>
+                        <span>Username</span>
+                        <p id="username-history-modal"></p>
+                      </div>
+                      <div>
+                        <span>Location</span>
+                        <p id="location-history-modal"></p>
+                      </div>
+                      <div>
+                        <span>Status</span>
+                        <p id="status-history-modal"></p>
+                      </div>
+                      <div>
+                        <span>Assigned Time</span>
+                        <p id="assigned-time-history-modal"></p>
+                      </div>
+                    </div>
+                    <div class="col col-data-modal-custom">
+                      <div>
+                        <span>Complaint Created</span>
+                        <p id="complaint-created-history-modal"></p>
+                      </div>
+                      <div>
+                        <span>Platform</span>
+                        <br>
+                        <a id="platform-history-modal" href="#" target="_blank" data-coreui-toggle="tooltip" title="Open original post/tweet" class="link-platform"></a>
+                      </div>
+                      <div>
+                        <span>Category</span>
+                        <p id="category-history-modal"></p>
+                      </div>
+                      <div>
+                        <span>Handler</span>
+                        <p id="handler-history-modal"></p>
+                      </div>
+                      <div>
+                        <span>Solved Time</span>
+                        <p id="solved-time-history-modal"></p>
+                      </div>
+                    </div>
+                    <div class="col col-data-modal-custom">
+                      <div>
+                        <span>Complaint Message</span>
+                        <p id="complaint-message-history-modal"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-ghost-secondary" data-coreui-dismiss="modal">Close</button>
+                    <button id="solve-ticket-btn" type="button" class="btn btn-primary rounded-pill">Mark as Solved</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- My Leaderboard -->
+      <div id="div-leaderboard-custom" class="div-leaderboard-custom">
+        <div class="leaderboard-container-custom">
+          <div class="d-flex flex-row leaderboard-wrapper-custom">
+            <div class="flex-column d-flex justify-content-center card-wrap-left">
+              <div class="card-left-upper-leaderboard p-11">
+                <img src="./card_upper_left.png" width="350" alt="cardupleft">
+              </div>
+              <div class="card-left-bottom-leaderboard p-11">
+                <img src="./card_bottom_left.png" width="350" alt="cardbottomleft">
+              </div>
+            </div>
+            <div class="flex-column d-flex justify-content-center">
+              <div class="card-mid-leaderboard p-11">
+                <img src="./card_mid.png" width="390" alt="cardmid">
+              </div>
+            </div>
+            <div class="flex-column d-flex justify-content-center">
+              <div class="card-right-leaderboard p-11">
+                <img src="./card_right.png" width="390" alt="cardright">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script src="main.bundle.js"></script></body>
+</html>
